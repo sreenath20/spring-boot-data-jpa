@@ -14,6 +14,7 @@ public class Wallet { // POJO
     private Double balance;
     private String email;
     private String password;
+    private String address;
 
     public Wallet() {
     }
