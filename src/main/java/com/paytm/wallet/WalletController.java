@@ -32,5 +32,25 @@ public class WalletController {
         return this.walletService.depositFundsToWalletById(walletDTO.getId(),walletDTO.getAmount());
     }
 
+    @GetMapping("/{email}")
+    public Wallet getWalletByEmail(@PathVariable String email) throws WalletException{
+        return this.walletService.getWalletByEmailId(email);
+    }
+    // Admin API to get all wallets having low balance (between)
+    @GetMapping("from/{fromAmount}/to/{toAmount}")
+    public Collection<Wallet> getWalletsHavingBalanceBetween(@PathVariable Double fromAmount,@PathVariable Double toAmount){
+     return this.walletService.getAllwalletsHavingBalanceBetween(fromAmount,toAmount);
+    }
+
+    @DeleteMapping("/{email}")
+    public Wallet deleteWalletByEmailId(@PathVariable("email") String emailId) throws WalletException {
+        return this.walletService.deleteWalletByEmailId(emailId);
+    }
+
+    @DeleteMapping("soft/{email}")
+    public Wallet inactivateWalletByEmailId(@PathVariable String email)throws WalletException{
+        return this.walletService.inactivateWalletUserByEmailId(email);
+
+    }
 
 }

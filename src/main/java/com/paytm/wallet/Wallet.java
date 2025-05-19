@@ -1,20 +1,50 @@
 package com.paytm.wallet;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "Wallets")
 public class Wallet { // POJO
 
     @Id
+    @GeneratedValue
     private Integer id;
     private String name;
     private Double balance;
     private String email;
     private String password;
     private String address;
+    private String city;
+    private Boolean isActive =true;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public Wallet() {
     }
@@ -25,6 +55,7 @@ public class Wallet { // POJO
         this.balance = balance;
         this.email = email;
         this.password = password;
+        this.isActive=true;
     }
 
     public Integer getId() {
