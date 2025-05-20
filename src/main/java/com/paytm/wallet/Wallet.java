@@ -1,11 +1,11 @@
 package com.paytm.wallet;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.paytm.wallet.company.Company;
+import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "Wallets")
@@ -21,6 +21,40 @@ public class Wallet { // POJO
     private String address;
     private String city;
     private Boolean isActive =true;
+    // Wallet HAS-A dependency relation to userProfile []
+    @OneToOne
+    private UserProfile userProfile;
+
+    @OneToMany
+//    @Column(name = "transaction")
+    private Set<Transaction> TransactionsSet= new HashSet<>();
+
+    @ManyToOne
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Set<Transaction> getTransactionsSet() {
+        return TransactionsSet;
+    }
+
+    public void setTransactionsSet(Set<Transaction> transactionsSet) {
+        TransactionsSet = transactionsSet;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
 
     public Boolean getActive() {
         return isActive;

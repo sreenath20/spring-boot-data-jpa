@@ -65,3 +65,15 @@ delete table from wallet [42000-232]
 2025-05-19 10:44:14.238176+05:30 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "WALLET" not found; SQL statement:
 SELECT * FROM Wallet WHERE email = ? [42102-232]
+2025-05-20 09:38:50.214077+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "show columns [*]wallets"; expected "FROM"; SQL statement:
+show columns wallets [42001-232]
+2025-05-20 10:32:42.314555+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_PROFILES" not found; SQL statement:
+drop table user_profiles [42102-232]
+2025-05-20 12:06:43.870390+05:30 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "show [*]column from WALLETS_TRANSACTIONS_SET"; SQL statement:
+show column from WALLETS_TRANSACTIONS_SET [42000-232]
+2025-05-20 12:57:46.779073+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "show columns [*]wallets"; expected "FROM"; SQL statement:
+show columns wallets [42001-232]

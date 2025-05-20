@@ -18,18 +18,20 @@ public class WalletController {
     }
 
     //GET:http:/domainname:8080/v1/wallet
-    @PostMapping
-    public Wallet registerNewWalletUser(@RequestBody Wallet newWallet){
-        return this.walletService.registerNewWallet(newWallet);
+    @PostMapping("/{company}")
+    public Wallet registerNewWalletUser(@RequestBody Wallet newWallet, @PathVariable("company") String companyName)throws WalletException{
+      return this.walletService.registerNewWalletToCompany(newWallet,companyName);
+
     }
 
     @GetMapping("/all")
     public Collection<Wallet> getAllWallets(){
         return this.walletService.getAllWallets();
     }
+    // deposit funds
     @PatchMapping
     public Double addFundsToWallet(@RequestBody WalletDTO walletDTO)throws WalletException{
-        return this.walletService.depositFundsToWalletById(walletDTO.getId(),walletDTO.getAmount());
+        return this.walletService.depositFundsToWalletById(walletDTO.getEmail(),walletDTO.getAmount());
     }
 
     @GetMapping("/{email}")
@@ -52,5 +54,8 @@ public class WalletController {
         return this.walletService.inactivateWalletUserByEmailId(email);
 
     }
+    // Admin API
+    // Get all active users
+    // Get all inactive users
 
 }

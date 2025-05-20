@@ -2,23 +2,23 @@ package com.paytm.wallet;
 
 public class WalletDTO {
 
-    private Integer id;
+    private String  email;
     private Double amount;
 
     public WalletDTO() {
     }
 
-    public WalletDTO(Integer id, Double amount) {
-        this.id = id;
+    public WalletDTO(String email, Double amount) {
+        this.email = email;
         this.amount = amount;
     }
 
-    public Integer getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Double getAmount() {
