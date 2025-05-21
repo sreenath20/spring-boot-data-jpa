@@ -87,8 +87,8 @@ public class Wallet { // POJO
     public Wallet() {
     }
 
-    public Wallet(Integer id, String name, Double balance, String email, String password) {
-        this.id = id;
+    public Wallet( String name, Double balance, String email, String password) {
+
         this.name = name;
         this.balance = balance;
         this.email = email;

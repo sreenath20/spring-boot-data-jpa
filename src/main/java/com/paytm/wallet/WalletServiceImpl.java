@@ -27,16 +27,12 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public Wallet registerNewWallet(Wallet newWallet) throws WalletException {
         // company logic
-
-
         Optional<Wallet> walletopt = this.walletRepository.findByEmail(newWallet.getEmail());
         if (walletopt.isPresent())
             throw new WalletException("Email id already present");
-
         // profile logic
-        UserProfile userProfile = this.userProfileRepository.save(newWallet.getUserProfile());
-        newWallet.setUserProfile(userProfile);
-
+//        UserProfile userProfile = this.userProfileRepository.save(newWallet.getUserProfile());
+//        newWallet.setUserProfile(userProfile);
         return this.walletRepository.save(newWallet); // create new resource
     }
 
