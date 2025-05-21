@@ -1,6 +1,8 @@
 package com.paytm.wallet;
 
-import com.paytm.wallet.company.Company;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.paytm.company.Company;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -20,16 +22,18 @@ public class Wallet { // POJO
     private String password;
     private String address;
     private String city;
-    private Boolean isActive =true;
+    private Boolean isActive = true;
     // Wallet HAS-A dependency relation to userProfile []
     @OneToOne
     private UserProfile userProfile;
 
     @OneToMany
 //    @Column(name = "transaction")
-    private Set<Transaction> TransactionsSet= new HashSet<>();
+    private Set<Transaction> TransactionsSet = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name = "company_id")
+    @JsonIgnore
     private Company company;
 
     public Company getCompany() {
@@ -89,7 +93,7 @@ public class Wallet { // POJO
         this.balance = balance;
         this.email = email;
         this.password = password;
-        this.isActive=true;
+        this.isActive = true;
     }
 
     public Integer getId() {

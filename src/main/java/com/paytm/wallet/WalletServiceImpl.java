@@ -1,14 +1,13 @@
 package com.paytm.wallet;
 
-import com.paytm.wallet.company.Company;
-import com.paytm.wallet.company.CompanyRepository;
+import com.paytm.company.Company;
+import com.paytm.company.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -121,16 +120,11 @@ public class WalletServiceImpl implements WalletService {
         Optional<Company> companyOpt = this.companyRepository.findByName(companyName);
         if (companyOpt.isEmpty())
             throw new WalletException("Company not found");
-
         Company company = companyOpt.get();
-
         Optional<Wallet> walletopt = this.walletRepository.findByEmail(newWallet.getEmail());
         if (walletopt.isPresent())
             throw new WalletException("Email id already present");
-
-        // associate company to new wallet
-        newWallet.setCompany(company);
-
+        newWallet.setCompany(company);  // associate company to new wallet
         // profile logic
         UserProfile userProfile = this.userProfileRepository.save(newWallet.getUserProfile());
         newWallet.setUserProfile(userProfile);
